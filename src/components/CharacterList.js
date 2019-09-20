@@ -1,10 +1,34 @@
 import React, { useEffect, useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
 
 
-export default function CharacterList() {
+const Content = styled.div`
+  max-width:1000px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  margin:30px auto;
+  font-family: 'Tauri', sans-serif;
+`
+
+const Title = styled.h3`
+  text-align:center;
+  color:white;
+  text-decoration:none;
+`
+const CharacterContent = styled.p`
+  text-align:center;
+  color:white;
+  text-decoration:none
+`
+
+
+export default function CharacterList(props) {
   // TODO: Add useState to track data from useEffect
+
 
   const [characterData, setCharacterData] = useState([])
 
@@ -30,14 +54,14 @@ export default function CharacterList() {
         characterData.map(item => {
           return (
 
-            <div key={item.id}>
+            <Content key={item.id}>
               <Link to={`/character/${item.id}`}>
               <img src={item.image} alt="character profile" />
-              <h3>{item.name}</h3>
-              <p>{item.species}</p>
-              <p>{item.status}</p>
+              <Title> Name: {item.name}</Title>
+              <CharacterContent> Species: {item.species}</CharacterContent>
+              <CharacterContent> Status: {item.status}</CharacterContent>
               </Link>
-            </div>
+            </Content>
           )
         })
       }

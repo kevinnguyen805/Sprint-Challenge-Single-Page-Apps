@@ -1,6 +1,35 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const FormInput = styled.form`
+  text-align:center;
+  padding:15px;
+`
+
+const Content = styled.div`
+  max-width:1000px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  margin:30px auto;
+  font-family: 'Tauri', sans-serif;
+`
+
+const Title = styled.h3`
+  text-align:center;
+  color:white;
+  text-decoration:none;
+`
+const CharacterContent = styled.p`
+  text-align:center;
+  color:white;
+  text-decoration:none
+`
+
+
 
 export default function SearchForm(props) {
  
@@ -25,13 +54,9 @@ export default function SearchForm(props) {
     setSearchTerm(event.target.value)
   }
 
-
-
-  
-
   return (
     <section className="search-form">
-      <form>
+      <FormInput>
       <input
         type="text"
         placeholder="Search"
@@ -39,19 +64,19 @@ export default function SearchForm(props) {
         value={searchTerm}
         onChange={handleChange}
       />
-      </form>
+      </FormInput>
       <ul>
     {
       searchResults.map(item => {
         return (
-        <div key={item.id}>
+        <Content key={item.id}>
           <Link to={`/character/${item.id}`}>
             <img src={item.image} alt="character profile" />
-            <h3>{item.name}</h3>
-            <p>{item.species}</p>
-            <p>{item.status}</p>
+            <Title>Name: {item.name}</Title>
+            <CharacterContent>Species: {item.species}</CharacterContent>
+            <CharacterContent>Status:{item.status}</CharacterContent>
           </Link>
-        </div>
+        </Content>
         )
       })
     }
