@@ -1,18 +1,19 @@
 import React from "react";
 import {Route, Link} from 'react-router-dom'
-import Header from "./components/Header.js";
+import styled from 'styled-components'
 import WelcomePage from './components/WelcomePage'
 import CharacterList from './components/CharacterList'
 import CharacterCard from './components/CharacterCard'
+import SearchForm from './components/SearchForm'
 
 
 export default function App(props) {
   return (
     <main>
-  
-
+      {/* <SearchForm /> */}
       <div>
         <Link to="/">Home</Link>
+        <Link to="/searchcharacter">Search</Link>
         <Link to="/character">Characters</Link>
       </div>
 
@@ -20,6 +21,7 @@ export default function App(props) {
       <div>
         <Route exact path="/" component={WelcomePage} />
         <Route exact path="/character" component={CharacterList}/>
+        <Route path="/searchcharacter" component={SearchForm} />
         <Route path="/character/:id" render={props => <CharacterCard {...props} /> } />
       </div>
     </main>
